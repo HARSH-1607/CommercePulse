@@ -9,8 +9,8 @@ from datetime import date
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
-from fastapi import Depends, FastAPI, HTTPException, Query
-from fastapi.responses import FileResponse, PlainTextResponse
+from fastapi import Depends, FastAPI, HTTPException, Query, Request
+from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse
 from pydantic import BaseModel, Field, field_validator
 from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
@@ -142,6 +142,7 @@ def create_app(database_url: str | None = None, demo: bool | None = None) -> Fas
     engine = make_engine(database_url)
     SessionLocal = make_session_factory(engine)
     demo_enabled = demo if demo is not None else engine.url.get_backend_name() == "sqlite" and os.environ.get("COMMERCEPULSE_DEMO", "0") == "1"
+    public_demo = os.environ.get("COMMERCEPULSE_PUBLIC_DEMO", "0") == "1"
 
     @asynccontextmanager
     async def lifespan(_app: FastAPI):
@@ -154,6 +155,12 @@ def create_app(database_url: str | None = None, demo: bool | None = None) -> Fas
 
     app = FastAPI(title="CommercePulse", version="1.0.0", lifespan=lifespan)
 
+    @app.middleware("http")
+    async def protect_public_demo(request: Request, call_next):
+        if public_demo and request.url.path.startswith("/api/") and request.method not in {"GET", "HEAD", "OPTIONS"}:
+            return JSONResponse(status_code=403, content={"detail": "This public demo is read-only"})
+        return await call_next(request)
+
     def get_db():
         with SessionLocal() as db:
             yield db
@@ -164,7 +171,7 @@ def create_app(database_url: str | None = None, demo: bool | None = None) -> Fas
 
     @app.get("/api/config")
     def config():
-        return {"demo": demo_enabled, "currency": "USD"}
+        return {"demo": demo_enabled, "read_only": public_demo, "currency": "USD"}
 
     @app.get("/api/products")
     def products(db: Session = Depends(get_db)):

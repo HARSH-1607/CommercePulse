@@ -14,4 +14,4 @@ COPY --from=frontend /src/frontend/dist ./frontend/dist
 ENV FRONTEND_DIST=/srv/frontend/dist
 ENV DATABASE_URL=sqlite:////data/commercepulse.db
 EXPOSE 8001
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8001"]
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8001}"]

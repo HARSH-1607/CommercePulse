@@ -41,6 +41,10 @@ docker compose up --build
 
 Open <http://127.0.0.1:8001>. The SQLite database persists in a Docker volume. Docker is optional; the local instructions above work without it.
 
+## Public portfolio demo
+
+The `render.yaml` Blueprint runs a free, read-only demo using fictional data. `COMMERCEPULSE_PUBLIC_DEMO=1` blocks all API writes on the server and removes editing controls in the UI. The demo stores SQLite data on temporary storage and recreates the sample on restart; it is not a persistent business workspace. The local Docker setup remains editable.
+
 ## Import format
 
 Download the template in the Orders page. Required columns:

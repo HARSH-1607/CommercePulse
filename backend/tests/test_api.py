@@ -34,6 +34,17 @@ def test_demo_has_reports_forecasts_and_alerts(tmp_path):
         assert alerts["inventory"] and any(row["kind"] == "spike" for row in alerts["sales"])
 
 
+def test_public_demo_blocks_writes_but_keeps_reports(tmp_path, monkeypatch):
+    monkeypatch.setenv("COMMERCEPULSE_PUBLIC_DEMO", "1")
+    with client_for(tmp_path, demo=True) as client:
+        assert client.get("/api/config").json()["read_only"] is True
+        before = client.get("/api/products").json()
+        assert client.post("/api/products", json=product()).status_code == 403
+        assert client.post("/api/orders/import", json={"csv": csv_file(csv_row("NEW-1"))}).status_code == 403
+        assert client.get("/api/products").json() == before
+        assert client.get("/api/reports/overview").status_code == 200
+
+
 def test_import_is_idempotent_and_atomic(tmp_path):
     with client_for(tmp_path) as client:
         created = client.post("/api/products", json=product()).json()

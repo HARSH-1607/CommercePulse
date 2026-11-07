@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: commercepulse-demo
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:////tmp/commercepulse.db
+      - key: COMMERCEPULSE_DEMO
+        value: "1"
+      - key: COMMERCEPULSE_PUBLIC_DEMO
+        value: "1"
