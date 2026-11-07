@@ -1,0 +1,1 @@
+"""CommercePulse backend package."""

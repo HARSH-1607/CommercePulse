@@ -1,0 +1,11 @@
+services:
+  commercepulse:
+    build: .
+    environment:
+      COMMERCEPULSE_DEMO: "1"
+    ports:
+      - "127.0.0.1:8001:8001"
+    volumes:
+      - commercepulse_data:/data
+volumes:
+  commercepulse_data:
