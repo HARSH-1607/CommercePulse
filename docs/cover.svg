@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-label="CommercePulse: Revenue, inventory, forecasts and sales alerts">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0b1222"/><stop offset="1" stop-color="#14263d"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#71d7a5" stop-opacity=".28"/><stop offset="1" stop-color="#71d7a5" stop-opacity="0"/></radialGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#030711" flood-opacity=".35"/></filter>
+  </defs>
+  <rect width="1200" height="320" rx="22" fill="url(#bg)"/>
+  <circle cx="990" cy="90" r="270" fill="url(#glow)"/>
+  <path d="M0 270 C240 215 330 330 575 260 S950 250 1200 165" fill="none" stroke="#71d7a5" stroke-opacity=".16" stroke-width="2"/>
+  <path d="M0 290 C240 235 330 350 575 280 S950 270 1200 185" fill="none" stroke="#71d7a5" stroke-opacity=".09" stroke-width="2"/>
+  <rect x="58" y="51" width="166" height="32" rx="16" fill="#71d7a5" fill-opacity=".16" stroke="#71d7a5" stroke-opacity=".45"/>
+  <text x="141" y="72" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#71d7a5">PORTFOLIO PROJECT</text>
+  <text x="58" y="150" font-family="Segoe UI,Arial,sans-serif" font-size="52" font-weight="800" fill="#f6f9fc">CommercePulse</text>
+  <text x="60" y="192" font-family="Segoe UI,Arial,sans-serif" font-size="18" fill="#adc0d4">Revenue, inventory, forecasts and sales alerts</text>
+  <g font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="600" fill="#dce8f3">
+    <rect x="58" y="234" width="175" height="42" rx="10" fill="#21364c" stroke="#3d5871"/><text x="145" y="261" text-anchor="middle">SQL REPORTS</text>
+    <rect x="245" y="234" width="175" height="42" rx="10" fill="#21364c" stroke="#3d5871"/><text x="332" y="261" text-anchor="middle">FORECASTS</text>
+    <rect x="432" y="234" width="175" height="42" rx="10" fill="#21364c" stroke="#3d5871"/><text x="519" y="261" text-anchor="middle">STOCK LEDGER</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="800" y="54" width="334" height="215" rx="17" fill="#182d41" stroke="#42627a"/>
+    <rect x="822" y="77" width="290" height="10" rx="5" fill="#426078"/>
+    <rect x="822" y="105" width="98" height="82" rx="12" fill="#23445a"/>
+    <rect x="932" y="105" width="180" height="82" rx="12" fill="#23445a"/>
+    <path d="M949 163 L972 145 L993 151 L1016 122 L1045 136 L1063 118 L1094 130" fill="none" stroke="#71d7a5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="972" cy="145" r="4" fill="#71d7a5"/><circle cx="1016" cy="122" r="4" fill="#71d7a5"/><circle cx="1063" cy="118" r="4" fill="#71d7a5"/>
+    <rect x="822" y="206" width="290" height="12" rx="6" fill="#2b4c61"/>
+    <rect x="822" y="230" width="216" height="12" rx="6" fill="#2b4c61"/>
+    <circle cx="871" cy="146" r="24" fill="none" stroke="#71d7a5" stroke-width="8" stroke-dasharray="101 50"/>
+  </g>
+</svg>
